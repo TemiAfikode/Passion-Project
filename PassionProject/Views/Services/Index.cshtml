@@ -1,0 +1,76 @@
+﻿@model IEnumerable<PassionProject.Models.Services>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p style="text-align:right;margin-right:20px;">
+    <a class="btn btn-primary" asp-action="AddOrEdit">Create New</a>
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ServiceName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Vendors)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Fee)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedAt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateDeleted)
+                </th>
+                <th></th>
+                <th>Edit Action</th>
+                <th>Details Action</th>
+                <th>Delete Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ServiceName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vendors.VendorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDeleted)
+                </td>
+                <td>  </td>
+                <td class="text-center">
+                    <a asp-action="AddOrEdit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+
+                </td>
+
+                <td class="text-center">
+                    <a asp-action="Details" class="btn btn-info" asp-route-serviceId="@item.Id">Details</a>
+
+                </td>
+                <td class="text-center">
+
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-serviceId="@item.Id">Delete</a>
+
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
